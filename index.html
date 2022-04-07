@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #eee;
+        }
+        .main-box {
+            width: 100%;
+            height: 440px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            position: relative;
+            border-radius: 5px;
+        }
+        .box-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 1px 2px 3px rgba(0,0,0,0.1);
+            max-width: 150px;
+            width: 150px;
+            height: 400px;
+            margin: 0 10px;
+        }
+        .box-item span {
+            font-size: 30px;
+            font-weight: 600;
+            text-align: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background-color: #ccc;
+            color: #444;;
+        }
+        .plus-item {
+            width: 50px;
+            height: 50px;
+            border-radius: 30px;
+            background-color: #ccc;
+            color: #444;
+            position:absolute;
+            transition: 0.3s all;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .first-plus {
+            top: calc(50% - 25px);
+            left: calc(50% - 25px);
+        }
+        .left-plus {
+            top: calc(50% - 25px);
+            left: 50px;
+        }
+        .right-plus {
+            top: calc(50% - 25px);
+            right: 50px;
+        }
+        .main-box:hover .first-plus {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-5">
+        <h1 class="text-center text-success mb-5">Saeed Page</h1>
+        <div id="mainBox" class="main-box justify-content-center d-flex">
+            <div id="addFirst" class="plus-item first-plus d-flex align-items-center justify-content-center">
+                <i class="fas fa-plus"></i>
+            </div>
+            <div id="addLeft" class="plus-item left-plus d-flex align-items-center justify-content-center">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+            <div id="addRight" class="plus-item right-plus d-flex align-items-center justify-content-center">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var count = 1;
+    $('#addFirst').on('click', () => {
+        $('#mainBox').append('<div class="box-item"><span>' + count + '</span></div>')
+        $('.first-plus').remove();
+        $('.right-plus').css('opacity', '1');
+        $('.left-plus').css('opacity', '1');
+        changeNum(count);
+    });
+    $('#addRight').on('click', () => {
+        $('#mainBox').append('<div class="box-item"><span>' + count + '</span></div>')
+        changeNum(count);
+    });
+    $('#addLeft').on('click', () => {
+        $('#mainBox').prepend('<div class="box-item"><span>' + count + '</span></div>')
+        changeNum(count);
+    });
+    const changeNum = () => {
+        if (count < 6 ) {
+            return count++
+        }else{
+            $('.right-plus').remove();
+            $('.left-plus').remove();
+        }
+    }
+</script>
+</html>
